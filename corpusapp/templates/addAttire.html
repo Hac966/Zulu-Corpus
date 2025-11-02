@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %} cuisine {% endblock title %}
+{% block style %}
+<style>
+
+    #hr{
+    border-bottom: 3px solid black;
+    }
+
+    label{
+    color: black;
+    font-size: 2em;
+    }
+</style>
+
+
+{% endblock style %}
+
+{% block theCore %}
+<div id="hr">
+    <h2 style="color: black">Add New Traditional Attire</h2>
+</div>
+
+<div>
+    <form id="attireForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="headingForAttire" >Heading: </label>
+        <input type="text" id="headingForAttire" name="headingForAttire" required><br><br>
+
+        <label for="extractForAttire" >Small Extract: </label>
+        <textarea id="extractForAttire" name="extractForAttire"></textarea>
+
+        <label for="imageForAttire">Picture:</label>
+        <input type="file" id="imageForAttire" name="imageForAttire" accept="image/*" required><br><br>
+
+        <label for="learnMore">Learn More:</label>
+        <input type="url" id="learnMore" name="learnMore"> <p style="display: inline-block;">or</p> <input type="file" name="fileForAttire" id="fileForAttire" accept=".txt, text/plain, .pdf, application/pdf"> <br><br>
+
+        <button type="submit" >Submit </button>
+    </form>
+</div>
+
+{% endblock theCore %}
+
+{% block script %}
+<script src="{% static 'script.js' %}">
+  const form = document.getElementById('cuisineForm');
+  const learnMore = document.getElementById('learnMore');
+  const file = document.getElementById('fileForCuisine');
+
+  form.addEventListener('submit', function(event) {
+    if (learnMore.value && file.files.length > 0) {
+      alert("Please provide either text OR a file, not both.");
+      event.preventDefault();
+    } else if (!learnMore.value && file.files.length === 0) {
+      alert("Please provide either text OR a file.");
+      event.preventDefault();
+    }
+  });
+</script>
+{% endblock script %}

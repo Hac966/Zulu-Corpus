@@ -1,0 +1,22 @@
+<h1>Edit Your Entry</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label for="zulu-phrase">IsiZulu Phrase:</label>
+    <input type="text" name="zulu-phrase" value="{{ entry.isizulu }}">
+
+    <label for="english-translation">English Translation:</label>
+    <input type="text" name="english-translation" value="{{ entry.english }}">
+
+    <label for="extract">Extract:</label>
+    <textarea name="extract">{{ entry.extract }}</textarea>
+
+    <label for="word-usage">Word Usage:</label>
+    <textarea name="word-usage">{{ entry.word_usage }}</textarea>
+
+    <label for="learnMore">Learn More:</label>
+    <textarea name="learnMore">{{ entry.learn_more }}</textarea>
+
+    <button type="submit">Update Entry</button>
+</form>

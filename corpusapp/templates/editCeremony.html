@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %} cuisine {% endblock title %}
+{% block style %}
+<style>
+
+    #hr{
+    border-bottom: 3px solid black;
+    }
+
+    label{
+    color: black;
+    font-size: 2em;
+    }
+</style>
+
+
+{% endblock style %}
+
+{% block theCore %}
+<div id="hr">
+    <h2 style="color: black">Edit Your Ceremony</h2>
+</div>
+
+<div>
+    <form id="ceremonyForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="headingForCeremony" >Heading: </label>
+        <input type="text" id="headingForCeremony" name="headingForCeremony" value="{{ceremony.heading}}" required><br><br>
+
+        <label for="extractForCeremony" >Small Extract: </label>
+        <textarea id="extractForCeremony" name="extractForCeremony" required>{{ceremony.exact}}</textarea>
+
+        <label for="imageForCeremony">Picture:</label>
+        <input type="file" id="imageForCeremony" name="imageForCeremony" accept="image/*" value="{{ceremony.picture}}" required><br><br>
+
+        <label for="learnMore">Learn More:</label>
+        <input type="url" id="learnMore" name="learnMore" value="{{ceremony.learnMore}}"> <p style="display: inline-block;">or</p> <input type="file" name="fileForCeremony" id="fileForCeremony" accept=".txt, text/plain, .pdf, application/pdf" value="{{ceremony.file}}"> <br><br>
+
+        <button type="submit" >UPDATE</button>
+    </form>
+</div>
+
+{% endblock theCore %}
+
+{% block script %}
+<script src="{% static 'script.js' %}">
+  const form = document.getElementById('ceremonyForm');
+  const learnMore = document.getElementById('learnMore');
+  const file = document.getElementById('fileForCuisine');
+
+  form.addEventListener('submit', function(event) {
+    if (learnMore.value && file.files.length > 0) {
+      alert("Please provide either text OR a file, not both.");
+      event.preventDefault();
+    } else if (!learnMore.value && file.files.length === 0) {
+      alert("Please provide either text OR a file.");
+      event.preventDefault();
+    }
+  });
+</script>
+{% endblock script %}

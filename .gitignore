@@ -1,0 +1,20 @@
+# Virtual Environment
+venv/
+env/
+
+# Byte-compiled / optimized / DLL files
+_pycache_/
+*.py[cod]
+
+# Django specific files
+*.log
+*.sqlite3
+*.pot
+
+# Secret and local settings
+.env
+local_settings.py
+
+# Static/Media files (if not managed by Git LFS)
+media/
+static/
