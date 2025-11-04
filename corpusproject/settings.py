@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-5h8y70y*&8obenq7)(av2e&)y20e6ru_lw9%*h*nya-60g12(j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.render.com', 'corpusapp.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['.render.com', 'zulu-corpus-1.onrender.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
